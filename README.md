@@ -1,14 +1,14 @@
 # amplify-cli-action
 
-[![RELEASE](https://img.shields.io/github/v/release/ambientlight/amplify-cli-action?include_prereleases)](https://github.com/ambientlight/amplify-cli-action/releases)
+[![RELEASE](https://img.shields.io/github/v/release/jcmendez-acc/amplify-cli-action?include_prereleases)](https://github.com/jcmendez-acc/amplify-cli-action/releases)
 [![View Action](https://img.shields.io/badge/view-action-blue.svg?logo=github&color=orange)](https://github.com/marketplace/actions/amplify-cli-action)
-[![LICENSE](https://img.shields.io/github/license/ambientlight/amplify-cli-action)](https://github.com/ambientlight/amplify-cli-action/blob/master/LICENSE)
-[![ISSUES](https://img.shields.io/github/issues/ambientlight/amplify-cli-action)](https://github.com/ambientlight/amplify-cli-action/issues)
+[![LICENSE](https://img.shields.io/github/license/jcmendez-acc/amplify-cli-action)](https://github.com/jcmendez-acc/amplify-cli-action/blob/master/LICENSE)
+[![ISSUES](https://img.shields.io/github/issues/jcmendez-acc/amplify-cli-action)](https://github.com/jcmendez-acc/amplify-cli-action/issues)
 
 🚀 :octocat: AWS Amplify CLI support for github actions. This action supports configuring and deploying your project to AWS as well as creating and undeploying amplify environments.
 
 ## Getting Started
-You can include the action in your workflow as `actions/amplify-cli-action@0.3.0`. Example (configuring amplify, building and deploying):
+You can include the action in your workflow as `actions/amplify-cli-action@0.3.1`. Example (configuring amplify, building and deploying):
 
 ```yaml
 name: 'Amplify Deploy'
@@ -32,7 +32,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: configure amplify
-      uses: ambientlight/amplify-cli-action@0.3.0
+      uses: jcmendez-acc/amplify-cli-action@0.3.1
       with:
         amplify_command: configure
         amplify_env: prod
@@ -49,7 +49,7 @@ jobs:
         # npm run test
     
     - name: deploy
-      uses: ambientlight/amplify-cli-action@0.3.0
+      uses: jcmendez-acc/amplify-cli-action@0.3.1
       with:
         amplify_command: publish
         amplify_env: prod
@@ -239,7 +239,7 @@ jobs:
         node-version: [10.x]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
     - name: use node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -253,7 +253,7 @@ jobs:
         # also remove -_ from branch name and limit length to 10 for amplify env restriction
         echo "##[set-output name=amplifyenvname;]$(echo ${GITHUB_HEAD_REF//[-_]/} | cut -c-10)"
     - name: deploy test environment
-      uses: ambientlight/amplify-cli-action@0.3.0
+      uses: jcmendez-acc/amplify-cli-action@0.3.1
       with:
         amplify_command: add_env
         amplify_env: ${{ steps.setenvname.outputs.amplifyenvname }}
@@ -271,7 +271,7 @@ jobs:
         # npm run test
     
     - name: undeploy test environment
-      uses: ambientlight/amplify-cli-action@0.3.0
+      uses: jcmendez-acc/amplify-cli-action@0.3.1
       # run even if previous step fails
       if: failure() || success()
       with:
@@ -298,8 +298,8 @@ VERSION=0.3.1
 
 docker build -t amplify-cli-action:$VERSION .
 
-docker tag amplify-cli-action:$VERSION ghcr.io/ambientlight/amplify-cli-action/amplify-cli-action:$VERSION
+docker tag amplify-cli-action:$VERSION ghcr.io/jcmendez-acc/amplify-cli-action/amplify-cli-action:$VERSION
 
-docker push ghcr.io/ambientlight/amplify-cli-action/amplify-cli-action:$VERSION
+docker push ghcr.io/jcmendez-acc/amplify-cli-action/amplify-cli-action:$VERSION
 
 ```
