@@ -30,12 +30,12 @@ inputs:
     required: false
     default: true
   amplify_arguments:
-    description: 'additional arguments to pass to ampify_command defined command'
+    description: 'additional arguments to pass to amplify_command defined command'
     required: false
     default: ''
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/jcmendez-acc/amplify-cli-action/amplify-cli-action:0.3.1'
+  image: 'docker://jcmendez/amplify-cli-action:0.3.1'
   args:
     - ${{ inputs.project_dir }}
     - ${{ inputs.source_dir }}

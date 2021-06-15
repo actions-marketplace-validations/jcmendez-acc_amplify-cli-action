@@ -1,6 +1,6 @@
 FROM node:lts
 
-LABEL "com.github.actions.name"="GitHub action for deploying AWS Amplify project"
+LABEL "com.github.actions.name"="GitHub action for deploying AWS Amplify project containing python code"
 LABEL "com.github.actions.description"="This action builds and deploys your AWS Amplify project"
 LABEL "com.github.actions.icon"="git-commit"
 LABEL "com.github.actions.color"="orange"
