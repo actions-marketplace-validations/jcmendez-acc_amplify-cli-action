@@ -1,5 +1,5 @@
-name: 'amplify-cli-action'
-description: 'This action builds and deploys your AWS Amplify project'
+name: 'amplify-cli-action-python'
+description: 'This action builds and deploys your AWS Amplify project that uses python functions'
 inputs:
   project_dir: 
     description: 'the root project directory: use it if you amplify project is not this repo root directory'
