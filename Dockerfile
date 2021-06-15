@@ -95,7 +95,8 @@ RUN set -ex; \
 			-o \
 			\( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
 		\) -exec rm -rf '{}' +; \
-	rm -f get-pip.py
+	rm -f get-pip.py \
+	pip install --user pipenv
 
 LABEL org.opencontainers.image.source=https://github.com/jcmendez-acc/amplify-cli-action
 
