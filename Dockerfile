@@ -76,11 +76,16 @@ ENV PYTHON_PIP_VERSION 21.1.2
 # https://github.com/pypa/get-pip
 ENV PYTHON_GET_PIP_URL https://github.com/pypa/get-pip/raw/936e08ce004d0b2fae8952c50f7ccce1bc578ce5/public/get-pip.py
 ENV PYTHON_GET_PIP_SHA256 8890955d56a8262348470a76dc432825f61a84a54e2985a86cd520f656a6e220
+ENV PYTHON_GET_PIPENV_URL https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py
+ENV PYTHON_GET_PIPENV_SHA256 20550b4aba3a1de644ad176c6540f72fd10f6f18eee8179ebe9e1df6c4444b1d
 
 RUN set -ex; \
 	\
 	wget -O get-pip.py "$PYTHON_GET_PIP_URL"; \
 	echo "$PYTHON_GET_PIP_SHA256 *get-pip.py" | sha256sum --check --strict -; \
+	\
+	wget -O get-pipenv.py "$PYTHON_GET_PIPENV_URL"; \
+	echo "$PYTHON_GET_PIPENV_SHA256 *get-pipenv.py" | sha256sum --check --strict -; \
 	\
 	python get-pip.py \
 		--disable-pip-version-check \
@@ -89,15 +94,15 @@ RUN set -ex; \
 	; \
 	pip --version; \
 	\
+	python get-pipenv.py; \
+	\
 	find /usr/local -depth \
 		\( \
 			\( -type d -a \( -name test -o -name tests -o -name idle_test \) \) \
 			-o \
 			\( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
 		\) -exec rm -rf '{}' +; \
-	rm -f get-pip.py \
-	pip install --user pipenv
-
+	rm -f get-pip.py get-pipenv.py;
 LABEL org.opencontainers.image.source=https://github.com/jcmendez-acc/amplify-cli-action
 
 RUN npm install --global --unsafe-perm @aws-amplify/cli@latest
