@@ -294,7 +294,7 @@ As an alternative, one practical way could be to have a fixed sandbox environmen
 How to roll out a new image
 
 ``` bash
-VERSION=0.3.0
+VERSION=0.3.1
 
 docker build -t amplify-cli-action:$VERSION .
 
