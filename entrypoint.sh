@@ -53,9 +53,11 @@ case $5 in
   publish)
     if [[ ${6,,} =~ prod|release|master ]] ; then
       echo "Building production version"
+      npm install
       ng build --prod
     else
       echo "Building debug version"
+      npm install
       ng build
     fi
     amplify publish $9 --yes
