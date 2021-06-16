@@ -1,6 +1,6 @@
 FROM node:lts
 
-LABEL "com.github.actions.name"="GitHub action for deploying AWS Amplify project containing python code"
+LABEL "com.github.actions.name"="GitHub action for deploying AWS Amplify project containing python code and Angular app"
 LABEL "com.github.actions.description"="This action builds and deploys your AWS Amplify project"
 LABEL "com.github.actions.icon"="git-commit"
 LABEL "com.github.actions.color"="orange"
@@ -105,6 +105,7 @@ RUN set -ex; \
 	rm -f get-pip.py get-pipenv.py;
 LABEL org.opencontainers.image.source=https://github.com/jcmendez-acc/amplify-cli-action
 
+RUN npm install --global @angular/cli
 RUN npm install --global --unsafe-perm @aws-amplify/cli@latest
 
 COPY entrypoint.sh /entrypoint.sh

@@ -51,6 +51,13 @@ case $5 in
     ;;
 
   publish)
+    if [[ ${6,,} =~ prod|release|master ]] ; then
+      echo "Building production version"
+      ng build --prod
+    else
+      echo "Building debug version"
+      ng build
+    fi
     amplify publish $9 --yes
     ;;
 
